@@ -116,9 +116,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
+ }
 
-####DATABSE WITH EXTERNAL POSTGRESQL
+###DATABSE WITH EXTERNAL POSTGRESQL
 # DATABASES = {
 #     'default': {
 #         'ENGINE': os.getenv('ENGINE'),
@@ -171,6 +171,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://www.backend.com:3000',
     'http://www.backend.com:5432',
     'https://www.backend.com:5432',
+    'https://linkee.com.es',
 ]
 CORS_ALLOW_HEADERS = [
     'authorization',
@@ -181,6 +182,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://api.backend.com",
     'https://www.backend.com:5432',
     'http://www.backend.com:5432',
+    'https://linkee.com.es',
+    'https://api.linkee.com.es',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -189,6 +192,10 @@ CORS_ALLOW_CREDENTIALS = True
 
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = (BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

@@ -411,7 +411,7 @@ class GoogleLogin(SocialLoginView):
             httponly=True,     # protección contra XSS
             secure=True,      # requiere HTTPS
             samesite="None", # CSRF
-            domain='.backend.com'   ,
+            domain=os.getenv('DOMAIN_COOKIE')    ,
             max_age=60 * 60 * 24 * 7 ,# 7 dias
         )
         del response.data['access']
@@ -448,7 +448,7 @@ class CustomGitHubOAuth2Adapter(GitHubOAuth2Adapter):
 
 class GithubLogin(SocialLoginView):
     adapter_class = CustomGitHubOAuth2Adapter
-    callback_url = "https://www.backend.com:3000/login"  # Asegúrate de que esta URL sea válida
+    callback_url = os.getenv('REDIRECT_URI')  # Asegúrate de que esta URL sea válida
     client_class = CustomOAuth2Client
     def post(self, request, *args , **kwargs):
 
@@ -482,7 +482,7 @@ class GithubLogin(SocialLoginView):
                 httponly=True,     # protección contra XSS
                 secure=True,      # requiere HTTPS
                 samesite="None", # CSRF
-                domain='.backend.com'   ,
+                domain=os.getenv('DOMAIN_COOKIE')   ,
                 max_age=60 * 60 * 24 * 7 ,# 7 dias
             )
         
@@ -509,7 +509,7 @@ def logout(request):
             httponly=True,     # protección contra XSS
             secure=True,      # requiere HTTPS
             samesite="None", # CSRF
-            domain='.backend.com'   ,
+            domain= os.getenv('DOMAIN_COOKIE')    ,
             max_age=0 ,# 7 dias
         )
     try:
@@ -555,7 +555,7 @@ def refresh(request):
             httponly=True,     # protección contra XSS
             secure=True,      # HTTPS
             samesite="None", # Evita CSRF 
-            domain='.backend.com'   ,
+            domain= os.getenv('DOMAIN_COOKIE')    ,
             max_age=60 * 60 * 24 * 7  # días
         )
         

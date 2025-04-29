@@ -2,15 +2,15 @@ import axios from "axios";
 import https from 'https';
 
 
-const agent = new https.Agent({  
-    rejectUnauthorized: false  // ⚠️ solo para testing
-  });
+// const agent = new https.Agent({  
+//     rejectUnauthorized: false  // ⚠️ solo para testing
+//   });
 
 const URL = process.env.NEXT_PUBLIC_API_URL;
 const temp = axios.create({
     withCredentials: true,
     baseURL: URL,
-    httpsAgent: agent,
+    // httpsAgent: agent,
 
 },
 )
@@ -18,7 +18,7 @@ const temp = axios.create({
 const refreshaxios = axios.create({
     withCredentials: true,
     baseURL: URL,
-    httpsAgent: agent,
+    // httpsAgent: agent,
 
   })
 
