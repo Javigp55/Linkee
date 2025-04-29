@@ -1,0 +1,13 @@
+.env
+api.backend.com-key.pem
+api.backend.com.pem
+.gitignore db.sqlite3
+cert.pem
+key.pem
+myenv/
+Linkee/migrations/
+frontend/certificates/
+frontend/.env
+frontend/www.linkee.com-key.pem
+frontend/www.linkee.com.pem
+frontend/.gitignore

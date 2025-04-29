@@ -1,0 +1,14 @@
+django
+whitenoise
+djangorestframework
+djangorestframework-simplejwt
+django-cors-headers
+python-dotenv 
+geoip2
+qrcode[pil]
+django-allauth
+django-allauth[socialaccount]
+django-sslserver
+django-extensions
+dj-rest-auth
+psycopg2-binary

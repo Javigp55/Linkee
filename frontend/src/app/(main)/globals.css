@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:where(.dark, .dark *));
+
+.bg-grid{
+    background-color: #ffffff;
+    background-image: 
+      linear-gradient(rgba(162, 165, 229, 0.08) 1.3px, transparent 1.3px),
+      linear-gradient(to right, rgba(162, 165, 229, 0.08) 1.3px, #ffffff 1.3px);
+    background-size: 26px 26px;
+}
+
+.dark .bg-grid{
+  background-color: rgba(255, 255, 255, 0.02);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1.3px, transparent 1.3px),
+    linear-gradient(to right, rgba(162, 165, 229, 0.02) 1.3px, #171717 1.3px);
+  background-size: 26px 26px;
+}
+
