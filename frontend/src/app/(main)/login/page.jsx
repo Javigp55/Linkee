@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState , Suspense} from 'react'
 import Image from 'next/image';
 
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -11,14 +11,19 @@ import toast from 'react-hot-toast';
 
 export default  function LoginPage() {
   const [loading , setLoading] = useState(false)
+  const [ code , setCode ] = useState(undefined)
   const router = useRouter()
-  const params = useSearchParams()
+  useEffect(() => {
+    // Obtener parámetros de la URL manualmente
+    const params = new URLSearchParams(window.location.search);
+    setCode(params.get('code'));
+
+  }, []);
 ////USEEFFECT PARA LA PETICION DE GOOGLE Y GITHUB
   useEffect(() => {
-    if (params.get('code'))
+    if (code)
       {
         setLoading(true)
-        const code = params.get('code')
         /////PETICION DE GOOGLE
         if (code.length > 30)
         {
@@ -58,7 +63,7 @@ export default  function LoginPage() {
         }
       }
 
-  } ,[])
+  } ,[code])
 
   /////REDIRECCIONAMIENTO
   const redirGoogle = () => {

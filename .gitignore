@@ -10,4 +10,5 @@ frontend/certificates/
 frontend/.env
 frontend/www.linkee.com-key.pem
 frontend/www.linkee.com.pem
+db.sqlite3
 frontend/.gitignore
