@@ -99,8 +99,8 @@ export const stats_link = async (id, day) =>{
 
 }
 
-export const get_url = async (id) =>{
-    const res = await temp.get("get_url/"+id)
+export const get_url = async (id, config={}) =>{
+    const res = await temp.get("get_url/"+id, config)
     console.log(res.data)
     return res
    

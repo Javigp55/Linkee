@@ -98,8 +98,8 @@ def get_url(request, id):
     print(request.META)
 
 ###########COMPROBAR QUE TRAE IP Y SI NO ES UNKNOWN
-    if request.META.get('REMOTE_ADDR'):
-        ip = pais(request.META.get('REMOTE_ADDR'))
+    if request.META.get('HTTP_X_IP'):
+        ip = pais(request.META.get('HTTP_X_IP'))
         print(ip)
     else:
         ip = 'Unknown'
@@ -107,15 +107,15 @@ def get_url(request, id):
     if not id:
         return Response({"error":"Name needed."})
     ###################SI NO TRAE REFERER
-    if 'HTTP_REFERER' in request.META:
-        parsed = urlparse(request.META['HTTP_REFERER'])
+    if request.META.get('HTTP_X_REFERER'):
+        parsed = urlparse(request.META['HTTP_X_REFERER'])
         referer = parsed.netloc
         
     else:
         referer = 'Direct'
 #############SI NO TRAE OS
-    if 'OS' in request.META:
-        oss = request.META['OS']
+    if request.META.get('HTTP_X_USER_AGENT'):
+        oss = request.META['HTTP_X_USER_AGENT']
     else:
         oss = 'Unknown'
 
@@ -371,7 +371,7 @@ class GoogleLogin(SocialLoginView):
             "code": request.data['code'],
             "client_id": os.getenv('GOOGLE_CLIENT_ID'),
             "client_secret": os.getenv('GOOGLE_CLIENT_SECRET'),
-            "redirect_uri": os.getenv('REDIRECT_URI'),
+            "redirect_uri": 'https://www.backend.com:5432/login',
             "grant_type": "authorization_code"
         }
         response = requests.post(url, data=data)
@@ -411,7 +411,7 @@ class GoogleLogin(SocialLoginView):
             httponly=True,     # protección contra XSS
             secure=True,      # requiere HTTPS
             samesite="None", # CSRF
-            domain=os.getenv('DOMAIN_COOKIE')    ,
+            domain= os.getenv('DOMAIN_COOKIE')    ,
             max_age=60 * 60 * 24 * 7 ,# 7 dias
         )
         del response.data['access']
